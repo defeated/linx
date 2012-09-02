@@ -12,10 +12,10 @@ group :assets do
 end
 
 group :development do
-  gem 'thin',         '~> 1.4.1'
-  gem 'sextant',      '~> 0.1.3'
-  gem 'quiet_assets', '~> 1.0.1'
-  gem 'marginalia',   '~> 1.1.0'
+  gem 'thin',         '~> 1.4.1' # better than webrick
+  gem 'sextant',      '~> 0.1.3' # /rails/routes path in app
+  gem 'quiet_assets', '~> 1.0.1' # silence asset pipeline noise
+  gem 'marginalia',   '~> 1.1.0' # annotates sql logs
 
   gem 'guard',          '~> 1.3.2'
   gem 'guard-rspec',    '~> 1.2.1'
