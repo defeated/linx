@@ -24,7 +24,6 @@ describe LinksController do
 
   it "gets an existing link" do
     get :show, format: :json, id: google.id
-    result = JSON.parse response.body
-    result["url"].should == google.url
+    response.body.should == google.to_json
   end
 end
