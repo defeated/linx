@@ -1,2 +1,10 @@
 google:
   url: http://google.com
+
+oldest:
+  url: http://older.com
+  created_at: <%= 5.years.ago %>
+
+halloween:
+  url: http://halloween.com
+  created_at: <%= Time.local Time.now.year, 10, 31 %>
