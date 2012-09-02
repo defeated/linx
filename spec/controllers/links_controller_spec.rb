@@ -3,7 +3,9 @@ require 'spec_helper'
 describe LinksController do
   fixtures :links
 
-  let(:google) { links(:google) }
+  let(:google)    { links(:google)    }
+  let(:oldest)    { links(:oldest)    }
+  let(:halloween) { links(:halloween) }
 
   it "gets all links via json" do
     get :index, format: :json
@@ -25,5 +27,30 @@ describe LinksController do
   it "gets an existing link" do
     get :show, format: :json, id: google.id
     response.body.should == google.to_json
+  end
+
+  context "for date" do
+    subject { assigns(:links) }
+
+    it "gets links for 2012 via json" do
+      get :index, format: :json, year: 2012
+      should include(google)
+      should include(halloween)
+      should_not include(oldest)
+    end
+
+    it "gets links for 2012-10 via json" do
+      get :index, format: :json, year: 2012, month: 10
+      should include(halloween)
+      should_not include(google)
+      should_not include(oldest)
+    end
+
+    it "gets links for 2012-10-31 via json" do
+      get :index, format: :json, year: 2012, month: 10, day: 31
+      should include(halloween)
+      should_not include(google)
+      should_not include(oldest)
+    end
   end
 end

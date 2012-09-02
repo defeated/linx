@@ -2,11 +2,17 @@ class LinksController < ApplicationController
   respond_to :json
 
   def index
-    respond_with @links = Link.all
+    if year = params[:year]
+      @links = Link.for_date year, params[:month], params[:day]
+    else
+      @links = Link.all
+    end
+    respond_with @links
   end
 
   def show
-    respond_with @link = Link.find(params[:id])
+    @link = Link.find(params[:id])
+    respond_with @link
   end
 
   def create
