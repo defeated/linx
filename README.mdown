@@ -1,0 +1,11 @@
+# Linx
+
+A place to store links.
+
+## TBD
+
+  1. authentication (api key)
+  2. capture links via hubot
+  3. fetch html title & summary
+  4. categorize links (videos / photos / tweets / other)
+  5. embed preview (oembed?)
