@@ -3,6 +3,7 @@ source :rubygems
 
 gem 'rails', '3.2.8'
 gem 'jquery-rails'
+gem 'thin', '~> 1.4.1' # better than webrick
 gem 'foreman'
 
 group :assets do
@@ -16,7 +17,6 @@ group :production do
 end
 
 group :development do
-  gem 'thin',         '~> 1.4.1'  # better than webrick
   gem 'sextant',      '~> 0.1.3'  # /rails/routes path in app
   gem 'quiet_assets', '~> 1.0.1'  # silence asset pipeline noise
   gem 'marginalia',   '~> 1.1.0'  # annotates sql logs
