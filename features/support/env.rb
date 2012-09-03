@@ -26,3 +26,16 @@ end
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
+
+# load fixtures into database before each scenario
+Before do
+  ActiveRecord::Fixtures.reset_cache
+
+  fixtures_folder = File.join Rails.root, 'spec', 'fixtures'
+  fixtures_yaml   = File.join fixtures_folder, '*.yml'
+  fixtures = Dir[fixtures_yaml].map do |f|
+    File.basename f, '.yml'
+  end
+
+  ActiveRecord::Fixtures.create_fixtures fixtures_folder, fixtures
+end

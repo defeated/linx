@@ -5,9 +5,13 @@ class LinksController < ApplicationController
     if year = params[:year]
       @links = Link.for_date year, params[:month], params[:day]
     else
-      @links = Link.all
+      @links = Link.scoped
     end
-    respond_with @links
+    @links = @links.recent
+
+    respond_with @links do |format|
+      format.html
+    end
   end
 
   def show

@@ -2,6 +2,8 @@ class Link < ActiveRecord::Base
   validates :url, format: URI::regexp(%w(http https))
   attr_accessible :url
 
+  scope :recent, order("created_at DESC")
+
   def self.for_date(year, month = nil, day = nil)
     time = Time.local year, month, day
 
