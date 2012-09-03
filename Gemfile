@@ -2,7 +2,6 @@ ruby '1.9.3'
 source :rubygems
 
 gem 'rails', '3.2.8'
-gem 'sqlite3'
 gem 'jquery-rails'
 gem 'foreman'
 
@@ -12,11 +11,16 @@ group :assets do
   gem 'uglifier',     '>= 1.0.3'
 end
 
+group :production do
+  gem 'pg' # postgresql db adapter
+end
+
 group :development do
-  gem 'thin',         '~> 1.4.1' # better than webrick
-  gem 'sextant',      '~> 0.1.3' # /rails/routes path in app
-  gem 'quiet_assets', '~> 1.0.1' # silence asset pipeline noise
-  gem 'marginalia',   '~> 1.1.0' # annotates sql logs
+  gem 'thin',         '~> 1.4.1'  # better than webrick
+  gem 'sextant',      '~> 0.1.3'  # /rails/routes path in app
+  gem 'quiet_assets', '~> 1.0.1'  # silence asset pipeline noise
+  gem 'marginalia',   '~> 1.1.0'  # annotates sql logs
+  gem 'heroku',       '~> 2.31.2' # for deployment
 
   gem 'guard',          '~> 1.3.2'
   gem 'guard-rspec',    '~> 1.2.1'
@@ -25,6 +29,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'rspec-rails', '~> 2.11.0'
 end
 
