@@ -13,4 +13,8 @@ describe "custom routes" do
     get("/2012/10/31").should route_to("links#index", year: "2012",
       month: "10", day: "31")
   end
+
+  it "doesn't route nonsense" do
+    get("/yyyy/mm/dd").should_not be_routable
+  end
 end
