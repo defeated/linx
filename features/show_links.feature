@@ -9,5 +9,5 @@ Feature: Link Roll
   Scenario: Show links
     Then I should see a list of links
 
-  Scenario: Mosot recent first
+  Scenario: Most recent first
     Then I should see the newest link first
