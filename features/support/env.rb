@@ -39,3 +39,9 @@ Before do
 
   ActiveRecord::Fixtures.create_fixtures fixtures_folder, fixtures
 end
+
+# put omniauth in test mode
+OmniAuth.config.test_mode = true
+OmniAuth.config.add_mock :google, {
+  info: { email: "cucumber@litmusapp.com" }
+}

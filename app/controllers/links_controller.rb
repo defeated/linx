@@ -1,5 +1,6 @@
 class LinksController < ApplicationController
   respond_to :json
+  before_filter :admin_authenticate, only: :index
 
   def index
     if year = params[:year]

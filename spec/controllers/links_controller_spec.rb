@@ -7,13 +7,6 @@ describe LinksController do
   let(:oldest)    { links(:oldest)    }
   let(:halloween) { links(:halloween) }
 
-  it "gets all links via json" do
-    get :index, format: :json
-    response.should be_ok
-    response.content_type.should == Mime::JSON
-    assigns(:links).should include(google)
-  end
-
   it "creates a valid link" do
     post :create, format: :json, link: { url: "http://example.com" }
     response.status.should == 201 # :created
@@ -31,6 +24,17 @@ describe LinksController do
 
   context "for date" do
     subject { assigns(:links) }
+
+    before :each do
+      session[:admin_auth] = "rspec@litmusapp.com"
+    end
+
+    it "gets all links via json" do
+      get :index, format: :json
+      response.should be_ok
+      response.content_type.should == Mime::JSON
+      should include(google)
+    end
 
     it "gets links for 2012 via json" do
       get :index, format: :json, year: 2012

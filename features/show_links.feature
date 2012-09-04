@@ -4,7 +4,8 @@ Feature: Link Roll
   I should see a list of links that were shared
 
   Background:
-    Given I am on the links page
+    Given I am logged in as an admin
+    And I am on the links page
 
   Scenario: Show links
     Then I should see a list of links
