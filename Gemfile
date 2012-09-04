@@ -3,8 +3,10 @@ source :rubygems
 
 gem 'rails', '3.2.8'
 gem 'jquery-rails'
-gem 'thin', '~> 1.4.1' # better than webrick
 gem 'foreman'
+gem 'thin',             '~> 1.4.1'
+gem 'omniauth',         '~> 1.1.1' # authentication library
+gem 'omniauth-openid',  '~> 1.0.1' # openid provider for omniauth
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
