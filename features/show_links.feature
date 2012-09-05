@@ -12,3 +12,4 @@ Feature: Link Roll
 
   Scenario: Most recent first
     Then I should see the newest link first
+    And I should see the source information

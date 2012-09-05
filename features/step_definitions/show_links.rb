@@ -14,4 +14,8 @@ Then /^I should see the newest link first$/ do
   newest = Link.recent.first
   page.should have_selector("ul > li:first-child", text: newest.url)
 end
+
+Then /^I should see the source information$/ do
+  newest = Link.recent.first
+  page.should have_selector("ul > li:first-child", text: newest.source)
 end
