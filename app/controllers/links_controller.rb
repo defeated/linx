@@ -4,20 +4,18 @@ class LinksController < ApplicationController
 
   def index
     @links = Link.for_date(params[:from], params[:to]).recent
-
     respond_with @links do |format|
       format.html
     end
   end
 
   def show
-    @link = Link.find(params[:id])
+    @link = Link.find params[:id]
     respond_with @link
   end
 
   def create
-    @link = Link.new params[:link]
-    @link.save
+    @link = Link.create params[:link]
     respond_with @link
   end
 end
