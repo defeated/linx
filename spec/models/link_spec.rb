@@ -14,20 +14,25 @@ describe Link do
     end
   end
 
-  context "scopes" do
-    it "finds for year" do
-      Link.for_date(2012).all.should include(google)
-      Link.for_date(2012).all.should_not include(oldest)
+  context "#for_date" do
+    it "defaults to today" do
+      links = Link.for_date
+      links.should include(google)
+      links.should_not include(oldest)
     end
 
-    it "finds for month" do
-      Link.for_date(2012, 10).all.should include(halloween)
-      Link.for_date(2012, 10).all.should_not include(oldest)
+    it "finds since specified date" do
+      links = Link.for_date halloween.created_at
+      links.should include(google)
+      links.should include(halloween)
+      links.should_not include(oldest)
     end
 
-    it "finds for day" do
-      Link.for_date(2012, 10, 31).all.should include(halloween)
-      Link.for_date(2012, 10, 31).all.should_not include(oldest)
+    it "finds between specified dates" do
+      links = Link.for_date oldest.created_at, halloween.created_at
+      links.should include(halloween)
+      links.should include(oldest)
+      links.should_not include(google)
     end
   end
 end

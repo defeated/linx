@@ -7,4 +7,4 @@ oldest:
 
 halloween:
   url: http://halloween.com
-  created_at: <%= Time.local Time.now.year, 10, 31 %>
+  created_at: <%= Time.local Time.now.year - 1, 10, 31 %>
