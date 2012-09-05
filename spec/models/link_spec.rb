@@ -16,23 +16,21 @@ describe Link do
 
   context "#for_date" do
     it "defaults to today" do
-      links = Link.for_date
-      links.should include(google)
-      links.should_not include(oldest)
+      links_for_date = Link.for_date
+      links_for_date.should      include(google)
+      links_for_date.should_not  include(oldest)
     end
 
-    it "finds since specified date" do
-      links = Link.for_date halloween.created_at
-      links.should include(google)
-      links.should include(halloween)
-      links.should_not include(oldest)
+    it "finds on specified date" do
+      links_for_date = Link.for_date halloween.created_at
+      links_for_date.should      include(halloween)
+      links_for_date.should_not  include(google, oldest)
     end
 
     it "finds between specified dates" do
-      links = Link.for_date oldest.created_at, halloween.created_at
-      links.should include(halloween)
-      links.should include(oldest)
-      links.should_not include(google)
+      links_for_date = Link.for_date oldest.created_at, halloween.created_at
+      links_for_date.should      include(halloween, oldest)
+      links_for_date.should_not  include(google)
     end
   end
 end

@@ -3,12 +3,7 @@ class LinksController < ApplicationController
   before_filter :admin_authenticate, only: :index
 
   def index
-    if year = params[:year]
-      @links = Link.for_date year, params[:month], params[:day]
-    else
-      @links = Link.scoped
-    end
-    @links = @links.recent
+    @links = Link.for_date(params[:from], params[:to]).recent
 
     respond_with @links do |format|
       format.html

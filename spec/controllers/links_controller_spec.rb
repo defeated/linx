@@ -29,32 +29,23 @@ describe LinksController do
       session[:admin_auth] = "rspec@litmusapp.com"
     end
 
-    it "gets all links via json" do
+    it "gets links for today via json" do
       get :index, format: :json
       response.should be_ok
       response.content_type.should == Mime::JSON
-      should include(google)
+      should      include(google)
+      should_not  include(oldest)
     end
 
-    it "gets links for 2012 via json" do
-      get :index, format: :json, year: 2012
-      should include(google)
-      should include(halloween)
-      should_not include(oldest)
+    it "gets links for specific date via json" do
+      get :index, format: :json, from: halloween.created_at
+      should      include(halloween)
+      should_not  include(google, oldest)
     end
 
-    it "gets links for 2012-10 via json" do
-      get :index, format: :json, year: 2012, month: 10
-      should include(halloween)
-      should_not include(google)
-      should_not include(oldest)
-    end
-
-    it "gets links for 2012-10-31 via json" do
-      get :index, format: :json, year: 2012, month: 10, day: 31
-      should include(halloween)
-      should_not include(google)
-      should_not include(oldest)
+    it "gets links between dates via json" do
+      get :index, format: :json, from: oldest.created_at, to: Time.now
+      should include(google, halloween, oldest)
     end
   end
 end

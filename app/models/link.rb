@@ -4,7 +4,9 @@ class Link < ActiveRecord::Base
 
   scope :recent, order("created_at DESC")
 
-  def self.for_date(from = Time.now, to = Time.now)
+  def self.for_date(from = nil, to = nil)
+    from  = Time.now unless from
+    to    = from unless to
     where created_at: from.beginning_of_day..to.end_of_day
   end
 end
