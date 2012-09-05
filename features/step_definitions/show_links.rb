@@ -12,5 +12,6 @@ end
 
 Then /^I should see the newest link first$/ do
   newest = Link.recent.first
-  page.should have_selector("ul > li:first-child", content: newest.url)
+  page.should have_selector("ul > li:first-child", text: newest.url)
+end
 end
