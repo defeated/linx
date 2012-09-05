@@ -1,6 +1,6 @@
 class Link < ActiveRecord::Base
   validates :url, format: URI::regexp(%w(http https))
-  attr_accessible :url
+  attr_accessible :url, :source
 
   scope :recent, order("created_at DESC")
 
