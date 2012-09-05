@@ -1,7 +1,3 @@
-Then /^show me the page$/ do
-  save_and_open_page
-end
-
 Given /^I am logged in as an admin$/ do
   visit "/auth/google"
 end
