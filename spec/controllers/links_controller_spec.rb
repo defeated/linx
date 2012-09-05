@@ -44,7 +44,7 @@ describe LinksController do
     end
 
     it "gets links between dates via json" do
-      get :index, format: :json, from: oldest.created_at, to: Time.now
+      get :index, format: :json, from: oldest.created_at, to: Time.current
       should include(google, halloween, oldest)
     end
   end
