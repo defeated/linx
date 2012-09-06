@@ -3,7 +3,10 @@ class LinksController < ApplicationController
   before_filter :admin_authenticate, only: :index
 
   def index
-    @links = Link.for_date(params[:from], params[:to]).recent
+    from  = Chronic.parse params[:from]
+    to    = Chronic.parse params[:to]
+
+    @links = Link.for_date(from, to).recent
     respond_with @links do |format|
       format.html
     end
