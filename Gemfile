@@ -3,6 +3,7 @@ source :rubygems
 
 gem 'rails', '3.2.8'
 gem 'jquery-rails'
+gem 'chronic'
 gem 'foreman'
 gem 'thin',             '~> 1.4.1'
 gem 'omniauth',         '~> 1.1.1' # authentication library
