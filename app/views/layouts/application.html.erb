@@ -10,6 +10,35 @@
 </head>
 <body>
 
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse"
+        data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <%= link_to "Linx", friendly_date_path(from: "today"), class: "brand" %>
+      <div class="nav-collapse collapse">
+        <p class="navbar-text pull-right">
+          Logged in as
+          <i class="icon-user"></i>
+          <strong><%= session[:admin_auth] %></strong>
+        </p>
+        <ul class="nav">
+          <li class="<%= "active" if params[:from] == "today" %>">
+            <%= link_to "Today", friendly_date_path(from: "today") %>
+          </li>
+          <li class="<%= "active" if params[:from] == "yesterday" %>">
+            <%= link_to "Yesterday", friendly_date_path(from: "yesterday") %>
+          </li>
+        </ul>
+      </div><!-- .nav-collapse -->
+    </div><!-- .container-fluid -->
+  </div><!-- .nav-inner -->
+</div><!-- .nav -->
+
 <%= yield %>
 
 </body>

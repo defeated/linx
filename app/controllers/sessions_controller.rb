@@ -11,4 +11,9 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    reset_session
+    redirect_to links_path, alert: "Successfully logged out."
+  end
+
 end
